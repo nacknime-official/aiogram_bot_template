@@ -17,5 +17,7 @@ runner = Executor(dp)
 
 def setup():
     from app.models import db
+    from app import filters
 
     db.setup(runner)
+    filters.setup(dp)
