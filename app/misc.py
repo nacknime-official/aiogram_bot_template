@@ -23,3 +23,5 @@ def setup():
     db.setup(runner)
     middlewares.setup(dp)
     filters.setup(dp)
+
+    import app.handlers
