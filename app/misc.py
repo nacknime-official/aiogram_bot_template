@@ -13,3 +13,9 @@ storage = RedisStorage2(
 )
 dp = Dispatcher(bot, storage=storage)
 runner = Executor(dp)
+
+
+def setup():
+    from app.models import db
+
+    db.setup(runner)
