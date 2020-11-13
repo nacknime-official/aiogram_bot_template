@@ -8,9 +8,8 @@ verify_ssl = true
 [packages]
 aiogram = "*"
 aioredis = "*"
-gino = "*"
-psycopg2-binary = "*"
-alembic = "*"
+tortoise-orm = "*"
+aerich = "*"
 
 [requires]
 python_version = "3.8"

@@ -15,3 +15,13 @@ REDIS_HOST = os.getenv("REDIS_HOST", default="localhost")
 REDIS_PORT = os.getenv("REDIS_PORT", default=6379)
 REDIS_FSM_DB = os.getenv("REDIS_DB_FSM", default=0)
 REDIS_FSM_PREFIX = os.getenv("REDIS_PREFIX", default="fsm")
+
+TORTOISE_ORM = {
+    "connections": {"default": POSTGRES_URI},
+    "apps": {
+        "models": {
+            "models": ["app.models.base", "aerich.models"],
+            "default_connection": "default",
+        },
+    },
+}

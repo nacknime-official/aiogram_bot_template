@@ -10,9 +10,7 @@ class ACLMiddleware(BaseMiddleware):
     async def setup_chat(self, data: dict, user: types.User, message: types.Message):
         user_id = user.id
 
-        user = await User.get(user_id)
-        if user is None:
-            user = await User.create(user_id=user_id)
+        user = (await User.get_or_create(id=user_id))[0]
 
         data["user"] = user
 

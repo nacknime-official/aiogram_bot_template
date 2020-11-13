@@ -1,7 +1,10 @@
-from app.models.db import TimedBaseModel, db
+from tortoise import fields
+
+from .db import TimedBaseModel
 
 
 class User(TimedBaseModel):
-    __tablename__ = "users"
+    id = fields.IntField(pk=True)
 
-    user_id = db.Column(db.Integer, primary_key=True, index=True, unique=True)
+    class Meta:
+        table = "users"

@@ -1,36 +1,32 @@
 from aiogram import Dispatcher
 from aiogram.utils.executor import Executor
-from gino import Gino
+from tortoise import Tortoise, fields
+from tortoise.models import Model
 
 from app import config
 
-db = Gino()
+db = Tortoise()
 
 
-class BaseModel(db.Model):
-    __abstract__ = True
+class BaseModel(Model):
+    class Meta:
+        abstract = True
 
 
 class TimedBaseModel(BaseModel):
-    __abstract__ = True
+    class Meta:
+        abstract = True
 
-    created_at = db.Column(db.DateTime(True), server_default=db.func.now())
-    updated_at = db.Column(
-        db.DateTime(True),
-        default=db.func.now(),
-        onupdate=db.func.now(),
-        server_default=db.func.now(),
-    )
+    created_at = fields.DatetimeField(auto_now_add=True)
+    updated_at = fields.DatetimeField(auto_now=True)
 
 
 async def on_startup(dispatcher: Dispatcher):
-    await db.set_bind(config.POSTGRES_URI)
+    await db.init(config=config.TORTOISE_ORM)
 
 
 async def on_shutdown(dispatcher: Dispatcher):
-    bind = db.pop_bind()
-    if bind:
-        await bind.close()
+    await db.close_connections()
 
 
 def setup(runner: Executor):
