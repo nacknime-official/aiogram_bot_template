@@ -9,7 +9,7 @@ POSTGRES_PORT = os.getenv("POSTGRES_PORT", default=5432)
 POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", default="")
 POSTGRES_USER = os.getenv("POSTGRES_USER", default="aiogram")
 POSTGRES_DB = os.getenv("POSTGRES_DB", default="aiogram")
-POSTGRES_URI = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
+POSTGRES_URI = f"postgres://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
 
 REDIS_HOST = os.getenv("REDIS_HOST", default="localhost")
 REDIS_PORT = os.getenv("REDIS_PORT", default=6379)
