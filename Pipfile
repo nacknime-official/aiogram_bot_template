@@ -10,6 +10,7 @@ aiogram = "*"
 aioredis = "*"
 tortoise-orm = "*"
 aerich = "*"
+asyncpg = "*"
 
 [requires]
 python_version = "3.8"
